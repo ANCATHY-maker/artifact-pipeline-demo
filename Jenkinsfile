@@ -13,12 +13,12 @@ pipeline {
             steps {
                 echo 'Checking code quality'
                 bat '''
-                findstr GOOD quality.txt >nul
-                IF %ERRORLEVEL% NEQ 0 (
-                    echo Code quality check FAILED
-                    exit /b 1
-                ) ELSE (
-                    echo Code quality check PASSED
+                findstr GOOD quality.txt > nul
+                if errorlevel 1 (
+                    echo Code Quality Failed
+                    exit 1
+                ) else (
+                    echo Code Quality Passed
                 )
                 '''
             }
